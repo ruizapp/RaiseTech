@@ -1,7 +1,7 @@
 # 第3回課題
 <details>
 <summary>APサーバーの名前とバージョンを確認してみましょう。</summary>
-Puma Ver 5.6.5
+Puma Ver 5.6.5  
 ![Puma](lecture03/Puma_Version.png)
 </details>
 <details>

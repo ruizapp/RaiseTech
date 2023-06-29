@@ -2,7 +2,7 @@
 <details>
 <summary>APサーバーの名前とバージョンを確認してみましょう。</summary>
 Puma Ver 5.6.5  
-![Puma](RaiseTech/Puma_Version.png)
+![Puma](image/Puma_Version.png)
 </details>
 <details>
 <summary>AP サーバーを終了させた場合、引き続きアクセスできますか？</summary>

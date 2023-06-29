@@ -28,5 +28,5 @@ MySQL Ver 8.0.33
 Bundler
 </details>
 
-
+![Puma](image/Puma_Version.png)
 

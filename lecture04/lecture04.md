@@ -2,9 +2,9 @@
 
 ### VPC設定
 
-![VPC](lecture04/image/VPC_Config.png)
+![VPC](/image/VPC_Config.png)
 
-![VPC](lecture04/image/VPC_Config2.png)
+![VPC](/image/VPC_Config2.png)
 ### EC2設定
 
 ### RDS設定

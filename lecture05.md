@@ -8,6 +8,8 @@
 
 ここで RDSにmysql -u ユーザ名 -h エンドポイント -p で接続しようとするが、タイムアウトになる。原因はEC2を作り直して、RDSのEC2接続セットアップを忘れていたためだった。
 
+![](image/connect_mysql.png)
+
 無事接続できました！
 
 ```sudo yum -y install gcc-c++ make patch git curl zlib-devel openssl-devel ImageMagick-devel readline-devel libcurl-devel libffi-devel libicu-devel libxml2-devel libxslt-devel```
@@ -68,7 +70,11 @@ bundlerのインストール
 
 ```gem install bundler```
 
+![](image/bundler_error.png)
+
 その前に、My SQLのセットアップするんだった(*･ω･)ﾉ
+
+![](image/bin/setup_error.png)
 
 
 bundlerのインストール後、bin/setupを実行するとエラーが…
@@ -76,7 +82,7 @@ bundlerのインストール後、bin/setupを実行するとエラーが…
 
 ```sudo chown ec2-user raisetech-live8-sample-app/```
 
-
+![](image/bin/setup_error2.png)
 
 権限を与えて再び実行すると、またもエラー…
 
@@ -90,7 +96,7 @@ bundlerのインストール後、bin/setupを実行するとエラーが…
 
 ```bin/dev```
 
-
+![](image/bin/dev_error.png)
 
 また権限に関するエラーが出たので、修正。
 
@@ -104,12 +110,11 @@ bundlerのインストール後、bin/setupを実行するとエラーが…
 
 ## RDS動作確認
 
-写真を送信したら、↑このようなエラーが出たので
+![](image/elb_error.png)
 
+写真を送信したら、↑このようなエラーが出たのでstorage/をPermissionをrootからec2-userに変更
 
-
-Permissionをrootからec2-userに変更
-
+![](image/RDS_ok.png)
 
 エラーが解消され、画像もアップできた(いや、フルーツの画像じゃないんかい∑(ﾟДﾟ)）
 
@@ -126,17 +131,19 @@ Permissionをrootからec2-userに変更
 
 起動成功
 
-
+![](nginx_ok.png)
 
 ## ELB起動確認
 
+![](image/RDS_error.png)
 
 ```sudo vi config/environments/development.rb```
 
+![](image/development.png)
 
 development.rbに追加すると…
 
-
+![](image/elb_ok.png)
 
 
 反映される
@@ -147,4 +154,10 @@ development.rbに追加すると…
 
 
 EC2が使用できるロールを作成し、そのロールにs3にアクセスできるポリシーを追加
+
+![](image/lecture05-role.png)
+
+![](image/aws-configure.png)
+
+
 

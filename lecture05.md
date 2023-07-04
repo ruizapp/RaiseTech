@@ -2,7 +2,7 @@
 
 ## 組み込みサーバの動作
 
-~~~sudo yum -y install mysql~~~
+~~~ sudo yum -y install mysql ~~~
 
 
 

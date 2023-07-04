@@ -37,13 +37,17 @@ Rails6以降はyarnを使うので、yarnもインストールする
 
 rubyのバージョン管理ツールであるrbenvをインストール
 
-```git clone https://github.com/sstephenson/rbenv.git ~/.rbenv
+
+```
+git clone https://github.com/sstephenson/rbenv.git ~/.rbenv
 
 echo 'export PATH="$HOME/.rbenv/bin:$PATH"' >> ~/.bash_profile
 
 echo 'eval "$(rbenv init -)"' >> ~/.bash_profile
 
-sourc .bash_profile```
+sourc .bash_profile
+
+```
 
 
 sourceコマンドを打ったが反映されなかったので、一旦exitして再びEC2にSSH接続したら反映された。
@@ -51,9 +55,13 @@ sourceコマンドを打ったが反映されなかったので、一旦exitし�
 rubyをインストールするためのruby-buildをインストール
 
 
-```git clone https://github.com/sstephenson/ruby-build.git ~/.rbenv/plugins/ruby-build
+```
 
-rbenv install 3.1.2```
+git clone https://github.com/sstephenson/ruby-build.git ~/.rbenv/plugins/ruby-build
+
+rbenv install 3.1.2
+
+```
 
 
 bundlerのインストール

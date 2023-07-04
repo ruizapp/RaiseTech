@@ -4,7 +4,7 @@
 
 ``` sudo yum -y install mysql ```
 
-
+![](image/install_mysql.png)
 
 ここで RDSにmysql -u ユーザ名 -h エンドポイント -p で接続しようとするが、タイムアウトになる。原因はEC2を作り直して、RDSのEC2接続セットアップを忘れていたためだった。
 
@@ -102,6 +102,49 @@ bundlerのインストール後、bin/setupを実行するとエラーが…
 これでアプリケーションが起動した。
 
 
+## RDS動作確認
+
+写真を送信したら、↑このようなエラーが出たので
 
 
+
+Permissionをrootからec2-userに変更
+
+
+エラーが解消され、画像もアップできた(いや、フルーツの画像じゃないんかい∑(ﾟДﾟ)）
+
+
+
+##  Nginx動作確認
+
+```sudo amazon-linux-extras install nginx1```
+
+
+サーバ起動
+```sudo amazon-linux-extras install nginx1```
+
+
+起動成功
+
+
+
+## ELB起動確認
+
+
+```sudo vi config/environments/development.rb```
+
+
+development.rbに追加すると…
+
+
+
+
+反映される
+
+
+
+## S3設定
+
+
+EC2が使用できるロールを作成し、そのロールにs3にアクセスできるポリシーを追加
 

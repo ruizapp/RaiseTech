@@ -103,7 +103,7 @@ bundlerのインストール後、bin/setupを実行するとエラーが…
 
 ```sudo chown ec2-user /var/www/raisetech-live8-sample-app/app/assets/builds/```
 
-
+![](image/app_ok.png)
 
 これでアプリケーションが起動した。
 

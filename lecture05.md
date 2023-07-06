@@ -108,6 +108,24 @@ bundlerのインストール後、bin/setupを実行するとエラーが…
 これでアプリケーションが起動した。
 
 
+## Unicorn+Nginx
+
+config/unicorn.rbの設定
+
+![](image/unicorn_conf.png)
+
+```bundle exec unicorn_rails -c config/unicorn.rb```
+
+### /etc/nginx/nginx.confの設定
+
+![](image/nginx_conf.png)
+
+```sudo systemctl start nginx```
+
+![](image/unicorn+nginx.png)
+
+
+
 ## RDS動作確認
 
 ![](image/elb_error.png)

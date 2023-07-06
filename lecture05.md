@@ -169,7 +169,7 @@ sudo systemctl start nginx
 
 ![](image/development.png)
 
-development.rbにRDSのエンドポイントを追加すると…
+development.rbにALBのドメインを追加すると…
 
 ![](image/elb_ok.png)
 

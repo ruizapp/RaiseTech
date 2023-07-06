@@ -1,6 +1,6 @@
 # 第5回課題
 
-## 組み込みサーバの動作
+### 組み込みサーバの動作確認
 
 ``` sudo yum -y install mysql ```
 
@@ -10,32 +10,41 @@
 
 ![](image/connect_mysql.png)
 
-無事接続できました！
+修正して無事接続できました！    
 
-```sudo yum -y install gcc-c++ make patch git curl zlib-devel openssl-devel ImageMagick-devel readline-devel libcurl-devel libffi-devel libicu-devel libxml2-devel libxslt-devel```
 
 railsアプリが動くようにパッケージをインストール
 
-```sudo mkdir -p /var/www```
+```
+sudo yum -y install gcc-c++ make patch git curl zlib-devel openssl-devel ImageMagick-devel readline-devel libcurl-devel libffi-devel libicu-devel libxml2-devel libxslt-devel
+```
 
 アプリの配置ディレクトリを作成
+ 
+```sudo mkdir -p /var/www```
+
+
 
 
 /var/www配下にアプリケーションをクローンする(git clone <リポジトリのURL>)
 
 JavaScriptを実行できるように、Node.jsをインストール
 
-```curl -sL https://rpm.nodesource.com/setup_14.x | sudo bash -```
+```
+curl -sL https://rpm.nodesource.com/setup_14.x | sudo bash -
 
-↑AWSのリポジトリに追加するコマンド
+sudo yum -y install nodejs
 
-```sudo yum -y install nodejs```
+```
 
 Rails6以降はyarnを使うので、yarnもインストールする
 
-```curl -sL https://dl.yarnpkg.com/rpm/yarn.repo | sudo tee /etc/yum.repos.d/yarn.repo```
+```
+curl -sL https://dl.yarnpkg.com/rpm/yarn.repo | sudo tee /etc/yum.repos.d/yarn.repo
 
-```sudo yum -y install yarn```
+sudo yum -y install yarn
+
+```
 
 rubyのバージョン管理ツールであるrbenvをインストール
 
@@ -47,7 +56,7 @@ echo 'export PATH="$HOME/.rbenv/bin:$PATH"' >> ~/.bash_profile
 
 echo 'eval "$(rbenv init -)"' >> ~/.bash_profile
 
-sourc .bash_profile
+source .bash_profile
 
 ```
 
@@ -94,18 +103,11 @@ bundlerのインストール後、bin/setupを実行するとエラーが…
 これで再び実行すると、無事成功した。
 
 
-```bin/dev```
-
-![](image/bin/dev_error.png)
-
-また権限に関するエラーが出たので、修正。
-
-
-```sudo chown ec2-user /var/www/raisetech-live8-sample-app/app/assets/builds/```
 
 ![](image/app_ok.png)
 
 これでアプリケーションが起動した。
+
 
 
 ## Unicorn+Nginx
@@ -114,29 +116,36 @@ config/unicorn.rbの設定
 
 ![](image/unicorn_conf.png)
 
-```bundle exec unicorn_rails -c config/unicorn.rb```
+```bundle exec unicorn_rails -c config/unicorn.rb```→成功
 
 
 ###  Nginx動作確認
 
-```sudo amazon-linux-extras install nginx1```
+```
+sudo amazon-linux-extras install nginx1
 
+sudo systemctl start nginx
 
-サーバ起動
-```sudo amazon-linux-extras install nginx1```
-
+```
 
 起動成功
 
+
 ![](image/nginx_ok.png)
+
+
 
 ### /etc/nginx/nginx.confの設定
 
 ![](image/nginx_conf.png)
 
+
+
 ```sudo systemctl start nginx```
 
 ![](image/unicorn+nginx.png)
+
+
 
 
 ## RDS動作確認
@@ -156,9 +165,11 @@ config/unicorn.rbの設定
 
 ```sudo vi config/environments/development.rb```
 
+
+
 ![](image/development.png)
 
-development.rbに追加すると…
+development.rbにRDSのエンドポイントを追加すると…
 
 ![](image/elb_ok.png)
 
@@ -175,6 +186,7 @@ EC2が使用できるロールを作成し、そのロールにs3にアクセス
 ![](image/lecture05-role.png)
 
 ![](image/aws-configure.png)
+
 
 
 

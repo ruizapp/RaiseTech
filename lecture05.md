@@ -116,6 +116,20 @@ config/unicorn.rbの設定
 
 ```bundle exec unicorn_rails -c config/unicorn.rb```
 
+
+###  Nginx動作確認
+
+```sudo amazon-linux-extras install nginx1```
+
+
+サーバ起動
+```sudo amazon-linux-extras install nginx1```
+
+
+起動成功
+
+![](image/nginx_ok.png)
+
 ### /etc/nginx/nginx.confの設定
 
 ![](image/nginx_conf.png)
@@ -123,7 +137,6 @@ config/unicorn.rbの設定
 ```sudo systemctl start nginx```
 
 ![](image/unicorn+nginx.png)
-
 
 
 ## RDS動作確認
@@ -136,20 +149,6 @@ config/unicorn.rbの設定
 
 エラーが解消され、画像もアップできた(いや、フルーツの画像じゃないんかい∑(ﾟДﾟ)）
 
-
-
-##  Nginx動作確認
-
-```sudo amazon-linux-extras install nginx1```
-
-
-サーバ起動
-```sudo amazon-linux-extras install nginx1```
-
-
-起動成功
-
-![](nginx_ok.png)
 
 ## ELB起動確認
 

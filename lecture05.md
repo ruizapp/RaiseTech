@@ -187,6 +187,8 @@ EC2が使用できるロールを作成し、そのロールにs3にアクセス
 
 ![](image/aws-configure.png)
 
+## 構成図
 
+![](/image/kousei.png)
 
 

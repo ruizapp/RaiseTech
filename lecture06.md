@@ -12,7 +12,7 @@
   - ユーザ名
   - AWSアクセスキー
 
-![](image/StopInstances)
+![](image/StopInstances.png)
 
 ## CloudWatch
 

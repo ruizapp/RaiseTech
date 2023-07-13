@@ -103,18 +103,6 @@ Resources:
       SubnetId: !Ref PublicSubnet2
       RouteTableId: !Ref PublicRouteTable
 
-  # PrivateSubnet1RouteTableAssociation:
-  #   Type: AWS::EC2::SubnetRouteTableAssociation
-  #   Properties:
-  #     SubnetId: !Ref PrivateSubnet1
-  #     RouteTableId: !Ref PrivateRouteTable1
-
-  # PrivateSubnet2RouteTableAssociation:
-  #   Type: AWS::EC2::SubnetRouteTableAssociation
-  #   Properties:
-  #     SubnetId: !Ref PrivateSubnet2
-  #     RouteTableId: !Ref PrivateRouteTable2
-
 Outputs:
   VPCID:
     Description: VPC ID

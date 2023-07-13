@@ -84,22 +84,6 @@ Resources:
         - Key: Name
           Value: !Sub PublicRouteTable-${AWS::Region}ac-cfn
 
-  # PrivateRouteTable1:
-  #   Type: AWS::EC2::RouteTable
-  #   Properties:
-  #     VpcId: !Ref VPC
-  #     Tags:
-  #       - Key: Name
-  #         Value: !Sub PrivateRouteTable-${AWS::Region}a-cfn
-
-  # PrivateRouteTable2:
-  #   Type: AWS::EC2::RouteTable
-  #   Properties:
-  #     VpcId: !Ref VPC
-  #     Tags:
-  #       - Key: Name
-  #         Value: !Sub PrivateRouteTable-${AWS::Region}c-cfn
-
   PublicRoute:
     Type: AWS::EC2::Route
     Properties:

@@ -1,0 +1,68 @@
+AWSTemplateFormatVersion: 2010-09-09
+Description: template for ELB 
+
+Parameters:
+  VPCStack:
+    Type: String
+    Default: vpc
+  SGStack:
+    Type: String
+    Default: securitygroup
+  EC2Stack:
+    Type: String
+    Default: ec2
+
+Resources:
+  ALB:
+    Type: AWS::ElasticLoadBalancingV2::LoadBalancer
+    Properties:
+      Name: !Sub ${AWS::StackName}-ALB
+      Scheme: internet-facing
+      Type: application
+      Subnets:
+        - Fn::ImportValue: !Sub ${VPCStack}-PublicSubnet1a
+        - Fn::ImportValue: !Sub ${VPCStack}-PublicSubnet1c
+      SecurityGroups:
+        - Fn::ImportValue: !Sub ${SGStack}-ALB
+      IpAddressType: ipv4
+      Tags:
+        - Key: Name
+          Value: !Sub ${AWS::StackName}-ALB
+
+  ALBListener:
+    Type: AWS::ElasticLoadBalancingV2::Listener
+    Properties:
+      LoadBalancerArn: !Ref ALB
+      Port: 80
+      Protocol: HTTP
+      DefaultActions:
+        - Type: forward
+          TargetGroupArn: !Ref ALBTargetGroup
+
+  ALBTargetGroup:
+    Type: AWS::ElasticLoadBalancingV2::TargetGroup
+    Properties:
+      Name: !Sub ${AWS::StackName}-ALB-tg
+      VpcId:
+        Fn::ImportValue: !Sub ${VPCStack}-VPCID
+      Port: 80
+      Protocol: HTTP
+      TargetType: instance
+      Targets:
+        - Id:
+            Fn::ImportValue: !Sub ${EC2Stack}-EC2WebServer01
+      HealthCheckEnabled: true
+      HealthCheckPath: /
+      HealthCheckIntervalSeconds: 10
+      HealthyThresholdCount: 2
+      HealthCheckTimeoutSeconds: 5
+      UnhealthyThresholdCount: 2
+      Tags:
+        - Key: Name
+          Value: !Sub ${AWS::StackName}-ALB-tg
+
+Outputs:
+  ALBEndpoint:
+    Value: !GetAtt ALB.DNSName
+    Export:
+      Name: !Sub ${AWS::StackName}-ALBEndpoint

@@ -1,0 +1,51 @@
+AWSTemplateFormatVersion: 2010-09-09
+Description: template for RDS
+
+Parameters:
+  VPCStack:
+    Type: String
+    Default: vpc
+  SGStack:
+    Type: String
+    Default: securitygroup 
+
+Resources:
+  RDSDBInstance:
+    Type: AWS::RDS::DBInstance
+    DeletionPolicy: Delete
+    Properties:
+      DBInstanceIdentifier: rds
+      AllocatedStorage: 20
+      DBInstanceClass: db.t3.micro
+      MasterUsername: "admin"
+      MasterUserPassword: "IHnoiswjhuw938"
+      AvailabilityZone: !Select [0, !GetAZs ]
+      MultiAZ: false
+      PubliclyAccessible: false
+      Engine: mysql
+      EngineVersion: 8.0.32
+      StorageType: gp2
+      StorageEncrypted: true
+      CopyTagsToSnapshot: true
+      EnablePerformanceInsights: false
+      DeletionProtection: false
+      BackupRetentionPeriod: 0
+      DBSubnetGroupName: !Ref RDSDBSubnetGroup
+      VPCSecurityGroups:
+        - Fn::ImportValue: !Sub ${SGStack}-RDS-MySQL
+
+  RDSDBSubnetGroup:
+    Type: AWS::RDS::DBSubnetGroup
+    Properties:
+      DBSubnetGroupDescription: DB Subnet Group for Private Subnet
+      DBSubnetGroupName: !Sub ${AWS::StackName}-private-subnetgroup
+      SubnetIds:
+        - Fn::ImportValue: !Sub ${VPCStack}-PrivateSubnet1a
+        - Fn::ImportValue: !Sub ${VPCStack}-PrivateSubnet1c
+
+Outputs:
+  RDSDBEndpoint:
+    Value: !GetAtt RDSDBInstance.Endpoint.Address
+    Export:
+      Name: !Sub ${AWS::StackName}-RDSDBEndpoint
+

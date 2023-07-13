@@ -14,8 +14,6 @@
 
 ## ALB
 
-( [](CloudFormation_templates/alb.yml) )<br>
-
 ![](image/alb.png)
 
 ## EC2

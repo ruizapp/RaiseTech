@@ -18,7 +18,7 @@ Resources:
       AllocatedStorage: 20
       DBInstanceClass: db.t3.micro
       MasterUsername: "admin"
-      MasterUserPassword: "IHnoiswjhuw938"
+      MasterUserPassword: !Ref MySecret
       AvailabilityZone: !Select [0, !GetAZs ]
       MultiAZ: false
       PubliclyAccessible: false
@@ -33,6 +33,12 @@ Resources:
       DBSubnetGroupName: !Ref RDSDBSubnetGroup
       VPCSecurityGroups:
         - Fn::ImportValue: !Sub ${SGStack}-RDS-MySQL
+
+  MySecret:
+    Type: AWS::SecretsManager::Secret
+    Properties:
+      Name: MyRDSMasterPassword
+      SecretString: mypassword
 
   RDSDBSubnetGroup:
     Type: AWS::RDS::DBSubnetGroup

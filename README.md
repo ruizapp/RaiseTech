@@ -8,5 +8,4 @@
 |  lecture05.md  |  下記を使ったアプリのデプロイ<br>- EC2（WEBサーバー、APサーバー）<br>- RDS<br>- ALB<br>- S3  |
 |  lecture06.md  |  - CloudTrail<br>- CloudWatch<br>- CostExplorer  |
 |  lecture10.md<br>lecture10フォルダ  |  lecture05.mdの内容をCloudFormation化  |
-|  lecture11.md  |  ServerSpecの使用  |
 |  lecture12.md  |  CircleCIの導入  |
